@@ -1,0 +1,13 @@
+version: '3.2'
+services:
+  iotcore:
+    build: .
+    volumes:
+      - type: bind
+        source: '../aws-reddit-credentials/certs'
+        target: '/greengrass/certs'
+      - type: bind
+        source: '../aws-reddit-credentials/config'
+        target: '/greengrass/config'
+    ports:
+      - '8883:8883'
