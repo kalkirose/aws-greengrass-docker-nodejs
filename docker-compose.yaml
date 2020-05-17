@@ -1,13 +1,30 @@
 version: '3.2'
 services:
   iotcore:
-    build: .
+    build: ./core
     volumes:
       - type: bind
-        source: '../aws-reddit-credentials/certs'
+        source: ${CORE_CERTS}
         target: '/greengrass/certs'
       - type: bind
-        source: '../aws-reddit-credentials/config'
+        source: ${CORE_CONFIG}
         target: '/greengrass/config'
+      - type: bind
+        source: './log'
+        target: '/greengrass/ggc/var/log'
     ports:
       - '8883:8883'
+      - '8443:8443'
+  
+  example-thing:
+    build: ./things/example-thing
+    volumes:
+      - type: bind
+        source: ${THING_CERTS}
+        target: '/opt/cert'
+    env_file:
+      - ./things/example-thing/.env
+    ports:
+      - '80:80'
+
+      

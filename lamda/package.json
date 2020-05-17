@@ -2,8 +2,9 @@
   "name": "aws-reddit-consumer",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "api/lambda.js",
   "scripts": {
+    "start": "node ./api/lambda.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
